@@ -1,32 +1,62 @@
-<h1>Password Generator</h1>
+<div class="container">
+  <div class="columns is-centered">
+    <div
+      class="column box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet mx-5 mt-7 p-5 has-background-primary has-text-primary-invert box-shadow">
+      <h1 class="title has-text-centered">Password Generator</h1>
 
-<div>
-  <label>Enter Length</label>
-  <input />
+      <div class="filed my-5">
+        <label>Enter Length</label>
+        <input class="input" [class.input-focus]="inputFocus" (input)="onChangePasswordLength($event)" type="number"
+          (focus)="onInputFocus()" />
+      </div>
+
+      <div class="field my-3">
+        <div class="control">
+          <label class="checkbox custom-checkbox">
+            <input (change)="onChangeInputState('Letters')" type="checkbox" />
+            Use Letters
+          </label>
+        </div>
+      </div>
+
+      <div class="field my-3">
+        <div class="control">
+          <label class="checkbox custom-checkbox">
+            <input (change)="onChangeInputState('Numbers')" type="checkbox" />
+            Use Numbers
+          </label>
+        </div>
+      </div>
+
+      <div class="field my-3">
+        <div class="control">
+          <label class="checkbox custom-checkbox">
+            <input (change)="onChangeInputState('Symbols')" type="checkbox" />
+            Use Symbols
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <button class="button is-link is-fullwidth is-medium my-5"
+          [disabled]="!(passwordLength && (inputState.includeLetters || inputState.includeNumbers || inputState.includeSymbols))"
+          (click)="onButtonClick()">Generate!</button>
+      </div>
+
+      <div class="box" *ngIf="password">
+        <label>Your Password</label>
+        <input class="input is-size-5 has-text-centered has-text-weight-bold letter-spacing" [value]="password" />
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <label>Use Letters</label>
-  <input type="checkbox" />
-</div>
+<!-- {{ password }} -->
 
-<div>
-  <label>Use Numbers</label>
-  <input type="checkbox" />
-</div>
+<!-- (click)="onButtonClick()" - event binding syntax - we put event handler -->
 
-<div>
-  <label>Use Symbols</label>
-  <input type="checkbox" />
-</div>
+<!-- [value]="password" - property binding syntax -->
+<!-- [value]="getPassword()" -->
 
-<div>
-  <button (click)="onButtonClick()">Generate!</button>
-</div>
-
-<div>
-  <label>Your Password</label>
-  <input />
-</div>
-
-<router-outlet />
+<!-- {{ password }} - interpolation syntax -->
+<!-- {{ getName() }} -->
