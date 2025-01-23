@@ -1,5 +1,12 @@
-.mt-7 {
+.my-box {
   margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .my-box {
+    margin-top: 1.5rem;
+    background-color: rgba(0, 219, 178, 0.8) !important;
+  }
 }
 
 .box-shadow {
@@ -7,8 +14,8 @@
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.input-focus {
-  outline-color: #2942ff;
+.input-length-focus {
+  outline-color: #4258ff;
 }
 
 .custom-checkbox input[type="checkbox"] {
@@ -20,4 +27,8 @@
 
 .letter-spacing {
   letter-spacing: 2px;
+}
+
+.input-password-focus {
+  outline-color: #00d1b2;
 }

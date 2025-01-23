@@ -1,19 +1,18 @@
 <div class="container">
   <div class="columns is-centered">
     <div
-      class="column box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet mx-5 mt-7 p-5 has-background-primary has-text-primary-invert box-shadow">
+      class="my-box column is-gapless box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet has-background-primary has-text-primary-invert box-shadow mx-5 p-5">
       <h1 class="title has-text-centered">Password Generator</h1>
 
       <div class="filed my-5">
         <label>Enter Length</label>
-        <input class="input" [class.input-focus]="inputFocus" (input)="onChangePasswordLength($event)" type="number"
-          (focus)="onInputFocus()" />
+        <input class="input is-primary input-length-focus" (input)="onChangePasswordLength($event)" type="text" />
       </div>
 
       <div class="field my-3">
         <div class="control">
           <label class="checkbox custom-checkbox">
-            <input (change)="onChangeInputState('Letters')" type="checkbox" />
+            <input (change)="onChangeCheckboxState('Letters')" type="checkbox" />
             Use Letters
           </label>
         </div>
@@ -22,7 +21,7 @@
       <div class="field my-3">
         <div class="control">
           <label class="checkbox custom-checkbox">
-            <input (change)="onChangeInputState('Numbers')" type="checkbox" />
+            <input (change)="onChangeCheckboxState('Numbers')" type="checkbox" />
             Use Numbers
           </label>
         </div>
@@ -31,7 +30,7 @@
       <div class="field my-3">
         <div class="control">
           <label class="checkbox custom-checkbox">
-            <input (change)="onChangeInputState('Symbols')" type="checkbox" />
+            <input (change)="onChangeCheckboxState('Symbols')" type="checkbox" />
             Use Symbols
           </label>
         </div>
@@ -39,24 +38,18 @@
 
       <div>
         <button class="button is-link is-fullwidth is-medium my-5"
-          [disabled]="!(passwordLength && (inputState.includeLetters || inputState.includeNumbers || inputState.includeSymbols))"
+          [disabled]="!(passwordLength() && (checkboxState().includeLetters || checkboxState().includeNumbers || checkboxState().includeSymbols))"
           (click)="onButtonClick()">Generate!</button>
       </div>
 
-      <div class="box" *ngIf="password">
+      @if (password()) {
+      <div class="box">
         <label>Your Password</label>
-        <input class="input is-size-5 has-text-centered has-text-weight-bold letter-spacing" [value]="password" />
+        <input
+          class="input is-link is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus"
+          [value]="password()" />
       </div>
+      }
     </div>
   </div>
 </div>
-
-<!-- {{ password }} -->
-
-<!-- (click)="onButtonClick()" - event binding syntax - we put event handler -->
-
-<!-- [value]="password" - property binding syntax -->
-<!-- [value]="getPassword()" -->
-
-<!-- {{ password }} - interpolation syntax -->
-<!-- {{ getName() }} -->
