@@ -15,6 +15,7 @@ const passwordChars = {
 export class AppComponent {
   passwordLength = signal<number>(0);
   password = signal<string>('');
+  passwordIsCopied = signal<boolean>(false);
 
   checkboxState = signal<CheckboxState>({
     includeLetters: false,
@@ -30,6 +31,11 @@ export class AppComponent {
     } else {
       this.passwordLength.set(0);
     }
+  }
+
+  onClearPasswordLengthInput() {
+    this.passwordLength.set(0);
+    this.password.set('');
   }
 
   // changing state of three checkboxes - each separately
@@ -52,7 +58,7 @@ export class AppComponent {
   }
 
   // generating a random password according to selected checkboxes
-  onButtonClick() {
+  onGeneratePassword() {
     let validChars = '';
 
     this.checkboxState().includeLetters
@@ -74,5 +80,19 @@ export class AppComponent {
       generatedPassword += shuffleChars[index];
     }
     this.password.set(generatedPassword);
+  }
+
+  onCopyToClipboard() {
+    navigator.clipboard
+      .writeText(this.password())
+      .then(() => {
+        this.passwordIsCopied.set(true);
+        setTimeout(() => {
+          this.passwordIsCopied.set(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
   }
 }

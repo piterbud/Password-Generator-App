@@ -6,7 +6,9 @@
 
       <div class="filed my-5">
         <label>Enter Length</label>
-        <input class="input is-primary input-length-focus" (input)="onChangePasswordLength($event)" type="text" />
+        <input class="input is-primary input-length-focus mt-1" type="text"
+          [value]="passwordLength() ? passwordLength() : ''" (input)="onChangePasswordLength($event)"
+          (focus)="onClearPasswordLengthInput()" />
       </div>
 
       <div class="field my-3">
@@ -39,15 +41,21 @@
       <div>
         <button class="button is-link is-fullwidth is-medium my-5"
           [disabled]="!(passwordLength() && (checkboxState().includeLetters || checkboxState().includeNumbers || checkboxState().includeSymbols))"
-          (click)="onButtonClick()">Generate!</button>
+          (click)="onGeneratePassword()">Generate!</button>
       </div>
 
       @if (password()) {
-      <div class="box">
-        <label>Your Password</label>
+      <div class="box pt-3">
+        <div class="is-flex is-justify-content-space-between is-align-items-flex-end">
+          <label>Your Password</label>
+          <button class="copy-button is-flex is-flex-direction-column" (click)="onCopyToClipboard()">
+            <p class="is-size-7">copy</p>
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+        </div>
         <input
-          class="input is-link is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus"
-          [value]="password()" />
+          class="input is-link is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus mt-1"
+          [value]="password()" readonly />
       </div>
       }
     </div>

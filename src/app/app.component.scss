@@ -32,3 +32,11 @@
 .input-password-focus {
   outline-color: #00d1b2;
 }
+
+.copy-button {
+  color: #4258ff;
+  &:hover {
+    color: #2941fc;
+    cursor: pointer;
+  }
+}
