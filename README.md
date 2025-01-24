@@ -5,7 +5,7 @@
 This is very usefull application to generate passwords. 
 * You can easily choose any password length and structure (letters, numbers, symbols). 
 * Once you've generated your password, you can copy it to your clipboard with one click.
-* All inscriptions on the website are in English.
+* The app is in English.
 
 ### Other features:
 * The application is **responsive** and can be used on desktop computers, tablets and smartphones.
