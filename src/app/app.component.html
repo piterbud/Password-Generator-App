@@ -1,14 +1,13 @@
 <div class="container">
   <div class="columns is-centered">
     <div
-      class="main-box column is-gapless box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet has-text-primary-invert box-shadow mx-5 p-5">
+      class="main-box column is-gapless box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet box-shadow mx-5 p-5">
       <h1 class="title has-text-centered">Password Generator</h1>
 
       <div class="filed my-5">
         <label>Enter Length</label>
-        <input class="input is-primary input-length-focus mt-1" type="text"
-          [value]="passwordLength() ? passwordLength() : ''" (input)="onChangePasswordLength($event)"
-          (focus)="onClearPasswordLengthInput()" />
+        <input class="input input-length-focus mt-1" type="text" [value]="passwordLength() ? passwordLength() : ''"
+          (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLengthInput()" />
       </div>
 
       <div class="field my-3">
@@ -39,13 +38,13 @@
       </div>
 
       <div>
-        <button class="button is-link is-fullwidth is-medium my-5"
+        <button class="generate-button button is-fullwidth is-medium my-5"
           [disabled]="!(passwordLength() && (checkboxState().includeLetters || checkboxState().includeNumbers || checkboxState().includeSymbols))"
           (click)="onGeneratePassword()">Generate!</button>
       </div>
 
       @if (password()) {
-      <div class="password-box box has-text-primary-invert pt-3">
+      <div class="password-box box pt-3">
         <div class="is-flex is-justify-content-space-between is-align-items-flex-end">
           <label>Your Password</label>
           <button class="is-flex is-flex-direction-column is-align-items-center copy-button"
@@ -59,10 +58,12 @@
           </button>
         </div>
         <input
-          class="input is-link has-text-primary-invert is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus mt-1"
+          class="input is-link is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus mt-1"
           [class.input-password-copied]="passwordIsCopied()" [value]="password()" readonly />
       </div>
       }
     </div>
   </div>
 </div>
+
+<!-- has-text-primary-invert -->

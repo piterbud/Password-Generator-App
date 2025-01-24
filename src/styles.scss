@@ -19,15 +19,19 @@ html {
   background-image: url(../public/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.container {
-  width: 100%;
-  height: auto;
+  background-attachment: fixed;
 }
 
 @media (orientation: portrait) and (max-width: 768px) {
   html {
     background-image: url(../public/background-mobile.jpg);
+  }
+}
+
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow: unset;
+    overflow-x: hidden;
   }
 }

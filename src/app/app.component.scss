@@ -1,11 +1,16 @@
 .main-box {
   margin-top: 4rem;
   background-color: rgba(0, 219, 178, 0.9);
+  color: #001f1a;
+  h1 {
+    color: #2e333d !important;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .main-box {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     background-color: rgba(0, 219, 178, 0.75);
   }
 }
@@ -16,8 +21,10 @@
 }
 
 .input-length-focus {
-  background-color: #f3fffd;
-  outline-color: #4258ff;
+  background-color: #ebfbf8;
+  outline-color: #4258ff !important;
+  color: rgb(0, 107, 91);
+  font-weight: 500;
 }
 
 input[type="checkbox"] {
@@ -41,9 +48,9 @@ input[type="checkbox"] {
   width: 18px;
   height: 18px;
   border: 2px solid rgb(0, 107, 91);
-  background-color: #f3fffd;
+  background-color: #ebfbf8;
   border-radius: 3px;
-  transition: background-color 0.2s;
+  transition: background-color 0.1s;
 }
 
 input[type="checkbox"]:checked + .custom-checkbox::before {
@@ -57,24 +64,47 @@ input[type="checkbox"]:checked + .custom-checkbox::before {
   left: 6px;
   width: 6px;
   height: 12px;
-  border: solid #f3fffd;
+  border: solid #ebfbf8;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.1s;
 }
 
 input[type="checkbox"]:checked + .custom-checkbox::after {
   opacity: 1;
 }
 
+// instead is-link
+.generate-button {
+  border: none;
+  background-color: #4258ff;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  transition: all 0.1s ease-out;
+  &:not(:disabled):hover {
+    background-color: #2941fc;
+  }
+  &:disabled {
+    cursor: default;
+  }
+  &:active {
+    background-color: #102afa !important;
+  }
+}
+
 .password-box {
-  background-color: #f3fffd;
+  background-color: #ebfbf8;
+  label {
+    color: #001f1a;
+  }
 }
 
 .input-password-focus {
   background-color: #ffffff;
-  outline-color: #00d1b2;
+  outline-color: #00d1b2 !important;
+  color: #001f1a;
 }
 
 .letter-spacing {
@@ -83,6 +113,7 @@ input[type="checkbox"]:checked + .custom-checkbox::after {
 
 .copy-button {
   width: 2rem;
+  background-color: transparent;
   border: none;
   font: inherit;
 }
