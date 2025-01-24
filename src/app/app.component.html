@@ -1,7 +1,7 @@
 <div class="container">
   <div class="columns is-centered">
     <div
-      class="my-box column is-gapless box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet has-background-primary has-text-primary-invert box-shadow mx-5 p-5">
+      class="main-box column is-gapless box is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet has-text-primary-invert box-shadow mx-5 p-5">
       <h1 class="title has-text-centered">Password Generator</h1>
 
       <div class="filed my-5">
@@ -13,27 +13,27 @@
 
       <div class="field my-3">
         <div class="control">
-          <label class="checkbox custom-checkbox">
+          <label class="checkbox">
             <input (change)="onChangeCheckboxState('Letters')" type="checkbox" />
-            Use Letters
+            <span class="custom-checkbox">Use Letters</span>
           </label>
         </div>
       </div>
 
       <div class="field my-3">
         <div class="control">
-          <label class="checkbox custom-checkbox">
+          <label class="checkbox">
             <input (change)="onChangeCheckboxState('Numbers')" type="checkbox" />
-            Use Numbers
+            <span class="custom-checkbox">Use Numbers</span>
           </label>
         </div>
       </div>
 
       <div class="field my-3">
         <div class="control">
-          <label class="checkbox custom-checkbox">
+          <label class="checkbox">
             <input (change)="onChangeCheckboxState('Symbols')" type="checkbox" />
-            Use Symbols
+            <span class="custom-checkbox">Use Symbols</span>
           </label>
         </div>
       </div>
@@ -45,17 +45,22 @@
       </div>
 
       @if (password()) {
-      <div class="box pt-3">
+      <div class="password-box box has-text-primary-invert pt-3">
         <div class="is-flex is-justify-content-space-between is-align-items-flex-end">
           <label>Your Password</label>
-          <button class="copy-button is-flex is-flex-direction-column" (click)="onCopyToClipboard()">
+          <button class="is-flex is-flex-direction-column is-align-items-center copy-button"
+            [ngClass]="passwordIsCopied() ? 'password-copied' : 'password-not-copied'" (click)="onCopyToClipboard()">
+            @if (!passwordIsCopied()) {
             <p class="is-size-7">copy</p>
+            } @else {
+            <p class="is-size-7">copied</p>
+            }
             <span class="material-symbols-outlined">content_copy</span>
           </button>
         </div>
         <input
-          class="input is-link is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus mt-1"
-          [value]="password()" readonly />
+          class="input is-link has-text-primary-invert is-size-5 has-text-centered has-text-weight-bold letter-spacing input-password-focus mt-1"
+          [class.input-password-copied]="passwordIsCopied()" [value]="password()" readonly />
       </div>
       }
     </div>

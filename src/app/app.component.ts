@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CheckboxState } from './input-state.model';
+import { NgClass } from '@angular/common';
 
 const passwordChars = {
   letters: 'abcdefghijklmnopqrstuvwyz',
@@ -9,6 +10,7 @@ const passwordChars = {
 
 @Component({
   selector: 'app-root',
+  imports: [NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -23,7 +25,7 @@ export class AppComponent {
     includeSymbols: false,
   });
 
-  // changing password length according to entered value with appropriate validation
+  // password length input - changing password length according to entered value with appropriate validation
   onChangePasswordLength(event: any): void {
     const parsedValue = parseInt(event.target.value);
     if (!isNaN(parsedValue) && parsedValue > 0) {
@@ -33,6 +35,7 @@ export class AppComponent {
     }
   }
 
+  // password length input - taking reset actions on input focus
   onClearPasswordLengthInput() {
     this.passwordLength.set(0);
     this.password.set('');
@@ -57,7 +60,7 @@ export class AppComponent {
     return arr.join('');
   }
 
-  // generating a random password according to selected checkboxes
+  // generating a random password according to selected checkboxes after click
   onGeneratePassword() {
     let validChars = '';
 
@@ -66,10 +69,10 @@ export class AppComponent {
           passwordChars.letters + passwordChars.letters.toUpperCase())
       : null;
     this.checkboxState().includeNumbers
-      ? (validChars += passwordChars.numbers)
+      ? (validChars += passwordChars.numbers + passwordChars.numbers)
       : null;
     this.checkboxState().includeSymbols
-      ? (validChars += passwordChars.symbols)
+      ? (validChars += passwordChars.symbols + passwordChars.symbols)
       : null;
 
     const shuffleChars = this.shuffleString(validChars);
@@ -82,6 +85,7 @@ export class AppComponent {
     this.password.set(generatedPassword);
   }
 
+  // copying password to clipboard after click
   onCopyToClipboard() {
     navigator.clipboard
       .writeText(this.password())

@@ -14,3 +14,9 @@ html {
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
+@media (orientation: portrait) and (max-width: 768px) {
+  html {
+    background-image: url(../public/background-mobile.jpg);
+  }
+}
