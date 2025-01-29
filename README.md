@@ -20,4 +20,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * TypeScript
 * HTML
 * SCSS
-* Bulma
