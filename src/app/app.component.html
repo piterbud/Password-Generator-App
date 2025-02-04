@@ -1,12 +1,12 @@
 <div class="container">
   <div class="main-box">
-    <h1 class="main-box__title">Password Generator</h1>
+    <h1 class="main-box__title" (click)="resetApp()">Password Generator</h1>
 
     <div class="input-password-length main-box__input">
       <label class="input-password-length__name">Enter Length</label>
       <div class="input-password-length__box">
-        <input class="input-password-length__input" type="text" [value]="passwordLength() ? passwordLength() : ''"
-          (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLengthInput()" />
+        <input class="input-password-length__input" type="text" [value]="inputValue()"
+          (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLength()" />
       </div>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div>
       <button class="generate-button main-box__button"
-        [disabled]="!(passwordLength() && (checkboxState().includeLetters || checkboxState().includeNumbers || checkboxState().includeSymbols))"
+        [disabled]="!(passwordLength() !== 0 && (checkboxState().includeLetters || checkboxState().includeNumbers || checkboxState().includeSymbols))"
         (click)="onGeneratePassword()">Generate!</button>
     </div>
 

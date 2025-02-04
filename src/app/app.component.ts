@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CheckboxState } from './input-state.model';
 import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 const passwordChars = {
   letters: 'abcdefghijklmnopqrstuvwyz',
@@ -10,11 +11,12 @@ const passwordChars = {
 
 @Component({
   selector: 'app-root',
-  imports: [NgClass],
+  imports: [NgClass, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  inputValue = signal('');
   passwordLength = signal(0);
   password = signal('');
   passwordIsCopied = signal(false);
@@ -26,19 +28,27 @@ export class AppComponent {
     includeSymbols: false,
   });
 
+  // full reset on clicking tha app title
+  resetApp() {
+    window.location.reload();
+  }
+
   // password length input - changing password length according to entered value with appropriate validation
-  onChangePasswordLength(event: any): void {
-    const parsedValue = parseInt(event.target.value);
-    if (!isNaN(parsedValue) && parsedValue > 0) {
-      this.passwordLength.set(parsedValue);
+  onChangePasswordLength(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const inputValue = target.value;
+    this.inputValue.set(inputValue);
+
+    if (/^[1-9]\d*$/.test(inputValue)) {
+      this.passwordLength.set(parseInt(inputValue, 10));
     } else {
       this.passwordLength.set(0);
     }
   }
 
   // password length input - taking reset actions on input focus
-  onClearPasswordLengthInput() {
-    this.passwordLength.set(0);
+  onClearPasswordLength() {
+    this.inputValue.set('');
     this.password.set('');
   }
 
