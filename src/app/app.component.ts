@@ -15,9 +15,10 @@ const passwordChars = {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  passwordLength = signal<number>(0);
-  password = signal<string>('');
-  passwordIsCopied = signal<boolean>(false);
+  passwordLength = signal(0);
+  password = signal('');
+  passwordIsCopied = signal(false);
+  passwordIsCopiedText = signal('copy');
 
   checkboxState = signal<CheckboxState>({
     includeLetters: false,
@@ -91,9 +92,11 @@ export class AppComponent {
       .writeText(this.password())
       .then(() => {
         this.passwordIsCopied.set(true);
+        this.passwordIsCopiedText.set('copied');
         setTimeout(() => {
           this.passwordIsCopied.set(false);
-        }, 2000);
+          this.passwordIsCopiedText.set('copy');
+        }, 1000);
       })
       .catch((err) => {
         console.error('Failed to copy text: ', err);

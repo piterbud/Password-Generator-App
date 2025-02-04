@@ -9,11 +9,11 @@ This is very usefull application to generate passwords.
 
 ### Other features:
 * The application is **responsive** and can be used on desktop computers, tablets and smartphones.
-
+ 
 ## Running the page
 To run this project:
 * run `ng serve` for a dev server and navigate to `http://localhost:4200/` or
-* click this [link](https://piterbud.github.io/Password-Generator-App/)
+* click this [link](https://piotr-woz.github.io/Password-Generator-App/)
 
 ## Technologies
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0. and with:
