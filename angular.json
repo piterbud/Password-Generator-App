@@ -31,9 +31,10 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "public/styles/utils/index.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src", "public"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -90,9 +91,10 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "public/styles/utils/index.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src", "public"]
+            },
             "scripts": []
           }
         }

@@ -1,0 +1,15 @@
+$xs-mobile: 396px;
+$s-mobile: 576px;
+$mobile: 768px;
+
+@mixin view-max-portrait($breakpoint) {
+  @media (orientation: portrait) and (max-width: #{$breakpoint - 1px}) {
+    @content;
+  }
+}
+
+@mixin view-max($breakpoint) {
+  @media (max-width: #{$breakpoint - 1px}) {
+    @content;
+  }
+}

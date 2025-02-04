@@ -1,3 +1,5 @@
+@use "styles/utils" as *;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,61 +8,69 @@
 
 .main-box {
   width: 95%;
-  max-width: 520px;
-  margin: 65px 0 20px;
-  padding: 25px 30px;
+  max-width: 52rem;
+  margin: 6.5rem 0 2rem;
+  padding: 2.8rem 3rem;
   border: none;
   border-radius: 12px;
-  background-color: rgba(0, 219, 178, 0.9);
-  color: #001f1a;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  background-color: $main-bg-color;
+  color: $main-font-color;
+  box-shadow: $main-box-shadow;
   &__title {
-    color: #2e333d;
-    font-size: 2.3rem;
+    color: $title-font-color;
+    font-size: 3.8rem;
     font-weight: bold;
     text-align: center;
   }
 }
 
-@media (max-width: 767px) {
+@include view-max($mobile) {
   .main-box {
-    margin: 20px 0 20px;
-    padding: 15px 20px;
-    background-color: rgba(0, 219, 178, 0.75);
+    margin: 2rem 0 2rem;
+    padding: 1.5rem 2rem;
+    background-color: $main-bg-color-mobile;
   }
 }
 
 .input-password-length {
-  margin: 24px 0;
+  margin: 2.4rem 0;
+  &__name {
+    user-select: none;
+  }
   &__box {
     display: flex;
     justify-content: center;
+    margin: 1.2rem 0;
   }
   &__input {
     width: 25%;
-    margin-top: 4px;
     padding: 6px 8px;
-    border: 2px solid rgb(0, 107, 91);
+    border: 2px solid $main-input-color;
     border-radius: 6px;
-    outline-color: #4258ff;
-    background-color: #dafef7;
-    color: rgb(0, 107, 91);
+    outline-color: $main-input-outline-color;
+    background-color: $main-input-bg-color;
+    color: $main-input-color;
     font: inherit;
     font-weight: 500;
     text-align: center;
   }
 }
 
+@include view-max-portrait($xs-mobile) {
+  .input-password-length__input {
+    font-size: 1.5rem;
+  }
+}
+
 .checkbox {
   display: block;
-  margin: 12px 0;
+  margin: 1.4rem 0;
   &__input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
     &:checked + .checkbox__name::before {
-      background-color: rgb(0, 107, 91);
+      background-color: $main-input-color;
     }
     &:checked + .checkbox__name::after {
       opacity: 1;
@@ -68,7 +78,7 @@
   }
   &__name {
     position: relative;
-    padding-left: 26px;
+    padding-left: 2.6rem;
     user-select: none;
     cursor: pointer;
     &::before {
@@ -79,8 +89,8 @@
       transform: translateY(-50%);
       width: 18px;
       height: 18px;
-      border: 2px solid rgb(0, 107, 91);
-      background-color: #dafef7;
+      border: 2px solid $main-input-color;
+      background-color: $main-input-bg-color;
       border-radius: 3px;
       transition: background-color 0.1s;
     }
@@ -91,7 +101,7 @@
       left: 7.1px;
       width: 6px;
       height: 12px;
-      border: solid #ebfbf8;
+      border: solid $checkbox-symbol-color;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
       opacity: 0;
@@ -102,14 +112,14 @@
 
 .generate-button {
   width: 100%;
-  margin: 12px 0 24px;
+  margin: 1.4rem 0 2.2rem;
   border: none;
   border-radius: 6px;
-  background-color: #4258ff;
-  color: #ffffff;
-  font-size: 18px;
+  background-color: $g-button-bg-color;
+  color: $g-button-font-color;
+  font-size: 1.8rem;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 4.8rem;
   user-select: none;
   transition: all 0.1s ease-out;
   &:disabled {
@@ -118,23 +128,26 @@
     opacity: 0.5;
   }
   &:not(:disabled):hover {
-    background-color: #2941fc;
+    background-color: $g-button-bg-color-hover;
   }
   &:not(:disabled):active {
-    background-color: #102afa;
+    background-color: $g-button-bg-color-action;
   }
 }
 
 .password-box {
-  padding: 12px 20px 20px;
+  padding: 1.2rem 2rem 2rem;
   border: none;
   border-radius: 12px;
-  background-color: #dafef7;
-  color: #001f1a;
+  background-color: $main-input-bg-color;
+  color: $main-font-color;
   &__content {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+  }
+  &__name {
+    user-select: none;
   }
 }
 
@@ -142,51 +155,54 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 2rem;
+  width: 3rem;
   background-color: transparent;
   border: none;
   font: inherit;
-  font-size: 12px;
+  p {
+    font-size: 1.2rem;
+    user-select: none;
+  }
   &--not-copied {
-    color: #4258ff;
+    color: $c-button-color;
     &:hover {
-      color: #2941fc;
+      color: $c-button-color-hover;
       cursor: pointer;
     }
   }
   &--copied {
-    color: #00d1b2;
+    color: $c-button-color-action;
   }
 }
 
 .input-password {
   width: 100%;
-  margin-top: 4px;
+  margin-top: 0.4rem;
   padding: 9px 14px;
-  border: 1px solid #4258ff;
+  border: 1px solid $password-input-border-color;
   border-radius: 6px;
   outline: none;
-  background-color: #ffffff;
-  color: #001f1a;
+  background-color: $password-input-bg-color;
+  color: $main-font-color;
   font-family: "Source Code Pro", serif;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
   text-align: center;
   &--copied {
-    border-color: #00d1b2;
-    color: #00d1b2;
+    border-color: $c-button-color-action;
+    color: $c-button-color-action;
   }
 }
 
-@media (orientation: portrait) and (max-width: 576px) {
+@include view-max-portrait($s-mobile) {
   .input-password {
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 }
 
-@media (orientation: portrait) and (max-width: 396px) {
+@include view-max-portrait($xs-mobile) {
   .input-password {
-    font-size: 15px;
+    font-size: 1.6rem;
   }
 }

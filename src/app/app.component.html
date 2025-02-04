@@ -1,6 +1,5 @@
 <div class="container">
-  <div
-    class="main-box column is-gapless is-one-third-fullhd is-two-fifths-widescreen is-half-desktop is-three-fifths-tablet">
+  <div class="main-box">
     <h1 class="main-box__title">Password Generator</h1>
 
     <div class="input-password-length main-box__input">
@@ -52,7 +51,8 @@
         </button>
       </div>
 
-      <input class="input-password" [class.input-password--copied]="passwordIsCopied()" [value]="password()" readonly />
+      <input class="input-password password-box__input" [class.input-password--copied]="passwordIsCopied()"
+        [value]="password()" readonly />
     </div>
     }
   </div>
