@@ -11,18 +11,3 @@
 :root {
   font-size: 62.5%;
 }
-
-body {
-  width: 100%;
-  height: 100vh;
-  background-image: url(../public/img/background.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-@include view-max-portrait($mobile) {
-  body {
-    background-image: url(../public/img/background-mobile.jpg);
-  }
-}

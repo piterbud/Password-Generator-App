@@ -1,0 +1,212 @@
+@use "styles/utils" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-box {
+  width: 95%;
+  max-width: 52rem;
+  margin: 6.5rem 0 2rem;
+  padding: 2.8rem 3rem;
+  border: none;
+  border-radius: 12px;
+  background-color: $main-bg-color;
+  color: $main-font-color;
+  box-shadow: $main-box-shadow;
+  &__title {
+    color: $title-font-color;
+    font-size: 3.8rem;
+    font-weight: bold;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@include view-max($mobile) {
+  .main-box {
+    margin: 2rem 0 2rem;
+    padding: 1.5rem 2rem;
+    background-color: $main-bg-color-mobile;
+  }
+}
+
+.input-password-length {
+  margin: 2.4rem 0;
+  &__name {
+    user-select: none;
+  }
+  &__box {
+    display: flex;
+    justify-content: center;
+    margin: 1.2rem 0;
+  }
+  &__input {
+    width: 25%;
+    padding: 6px 8px;
+    border: 2px solid $main-input-color;
+    border-radius: 6px;
+    outline-color: $main-input-outline-color;
+    background-color: $main-input-bg-color;
+    color: $main-input-color;
+    font: inherit;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+@include view-max-portrait($xs-mobile) {
+  .input-password-length__input {
+    font-size: 1.5rem;
+  }
+}
+
+.checkbox {
+  display: block;
+  margin: 1.4rem 0;
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    &:checked + .checkbox__name::before {
+      background-color: $main-input-color;
+    }
+    &:checked + .checkbox__name::after {
+      opacity: 1;
+    }
+  }
+  &__name {
+    position: relative;
+    padding-left: 2.6rem;
+    user-select: none;
+    cursor: pointer;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      border: 2px solid $main-input-color;
+      background-color: $main-input-bg-color;
+      border-radius: 3px;
+      transition: background-color 0.1s;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.7px;
+      left: 7.1px;
+      width: 6px;
+      height: 12px;
+      border: solid $checkbox-symbol-color;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.1s;
+    }
+  }
+}
+
+.generate-button {
+  width: 100%;
+  margin: 1.4rem 0 2.2rem;
+  border: none;
+  border-radius: 6px;
+  background-color: $g-button-bg-color;
+  color: $g-button-font-color;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 4.8rem;
+  user-select: none;
+  transition: all 0.1s ease-out;
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  &:not(:disabled):hover {
+    background-color: $g-button-bg-color-hover;
+    cursor: pointer;
+  }
+  &:not(:disabled):active {
+    background-color: $g-button-bg-color-action;
+  }
+}
+
+.password-box {
+  padding: 1.2rem 2rem 2rem;
+  border: none;
+  border-radius: 12px;
+  background-color: $main-input-bg-color;
+  color: $main-font-color;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__name {
+    user-select: none;
+  }
+}
+
+.copy-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 3rem;
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  p {
+    font-size: 1.2rem;
+    user-select: none;
+  }
+  &--not-copied {
+    color: $c-button-color;
+    &:hover {
+      color: $c-button-color-hover;
+      cursor: pointer;
+    }
+  }
+  &--copied {
+    color: $c-button-color-action;
+  }
+}
+
+.input-password {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 9px 14px;
+  border: 1px solid $password-input-border-color;
+  border-radius: 6px;
+  outline: none;
+  background-color: $password-input-bg-color;
+  color: $main-font-color;
+  font-family: "Source Code Pro", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  &--copied {
+    border-color: $c-button-color-action;
+    color: $c-button-color-action;
+  }
+}
+
+@include view-max-portrait($s-mobile) {
+  .input-password {
+    font-size: 1.8rem;
+  }
+}
+
+@include view-max-portrait($xs-mobile) {
+  .input-password {
+    font-size: 1.6rem;
+  }
+}
