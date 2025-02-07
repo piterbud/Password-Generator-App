@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CheckboxState } from './input-state.model';
 import { NgClass } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 const passwordChars = {
   letters: 'abcdefghijklmnopqrstuvwyz',
@@ -10,7 +11,7 @@ const passwordChars = {
 
 @Component({
   selector: 'app-main',
-  imports: [NgClass],
+  imports: [NgClass, MatIconModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })

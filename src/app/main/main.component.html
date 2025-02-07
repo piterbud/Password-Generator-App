@@ -5,8 +5,16 @@
     <div class="input-password-length main-box__input">
       <label class="input-password-length__name">Enter Length</label>
       <div class="input-password-length__box">
-        <input class="input-password-length__input" type="text" [value]="inputValue()"
-          (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLength()" />
+        <div class="input-password-length__input-box">
+          <input class="input-password-length__input" type="text" [value]="inputValue()"
+            (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLength()" />
+          <div class="input-password-length__input-buttons">
+            <button>+</button>
+            <button>
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -45,9 +53,7 @@
           [ngClass]="passwordIsCopied() ? 'copy-button--copied' : 'copy-button--not-copied'"
           (click)="onCopyToClipboard()">
           <p>{{ passwordIsCopiedText() }}</p>
-          @defer(on immediate) {
-          <span class="material-symbols-outlined">content_copy</span>
-          }
+          <mat-icon>content_copy</mat-icon>
         </button>
       </div>
 
