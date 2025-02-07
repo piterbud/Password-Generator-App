@@ -43,7 +43,8 @@ export class MainComponent {
     this.inputValue.set(inputValue);
 
     if (/^[1-9]\d*$/.test(inputValue)) {
-      this.passwordLength.set(parseInt(inputValue, 10));
+      const inputValueInt = parseInt(inputValue, 10);
+      this.passwordLength.set(inputValueInt);
     } else {
       this.passwordLength.set(0);
     }
@@ -60,14 +61,17 @@ export class MainComponent {
     const button = event.currentTarget as HTMLButtonElement;
     const action = button.dataset['count'];
 
-    if (action === 'add' && this.passwordLength() >= 0) {
+    if (
+      action === 'add' &&
+      this.passwordLength() >= 0 &&
+      this.passwordLength() < 100
+    ) {
       this.passwordLength.update((value) => value + 1);
     } else if (action === 'subtract' && this.passwordLength() > 0) {
       this.passwordLength.update((value) => value - 1);
     } else if (['5', '10', '15', '20', '25'].includes(action!)) {
       this.passwordLength.set(Number(action));
     }
-    console.log(action);
 
     this.inputValue.set(this.passwordLength().toString());
   }
