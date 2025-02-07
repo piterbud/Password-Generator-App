@@ -34,7 +34,7 @@ export class MainComponent {
   }
 
   // password length input - changing password length according to entered value with appropriate validation
-  onChangePasswordLength(event: Event): void {
+  onEnterPasswordLength(event: Event): void {
     const target = event.target as HTMLInputElement;
     const inputValue = target.value;
     this.inputValue.set(inputValue);
@@ -50,6 +50,19 @@ export class MainComponent {
   onClearPasswordLength() {
     this.inputValue.set('');
     this.password.set('');
+  }
+
+  // password length input - changing password length using buttons
+  onChangePasswordLength(event: Event): void {
+    const button = event.currentTarget as HTMLButtonElement;
+    const action = button.dataset['count'];
+
+    if (action === 'add' && this.passwordLength() >= 0) {
+      this.passwordLength.update((value) => value + 1);
+    } else if (action === 'subtract' && this.passwordLength() > 0) {
+      this.passwordLength.update((value) => value - 1);
+    }
+    this.inputValue.set(this.passwordLength().toString());
   }
 
   // changing state of three checkboxes - each separately

@@ -7,10 +7,10 @@
       <div class="input-password-length__box">
         <div class="input-password-length__input-box">
           <input class="input-password-length__input" type="text" [value]="inputValue()"
-            (input)="onChangePasswordLength($event)" (focus)="onClearPasswordLength()" />
+            (input)="onEnterPasswordLength($event)" (focus)="onClearPasswordLength()" />
           <div class="input-password-length__input-buttons">
-            <button>+</button>
-            <button>
+            <button data-count="add" (click)="onChangePasswordLength($event)">+</button>
+            <button data-count="subtract" (click)="onChangePasswordLength($event)">
               <mat-icon>remove</mat-icon>
             </button>
           </div>
