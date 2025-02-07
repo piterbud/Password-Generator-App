@@ -1,4 +1,10 @@
-import { Component, signal } from '@angular/core';
+import {
+  Component,
+  signal,
+  ElementRef,
+  AfterViewInit,
+  Renderer2,
+} from '@angular/core';
 import { CheckboxState } from './input-state.model';
 import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +23,7 @@ const numbersArray = ['5', '10', '15', '20', '25'];
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent {
+export class MainComponent implements AfterViewInit {
   inputValue = signal('');
   passwordLength = signal(0);
   buttonsWithNumbers = numbersArray;
@@ -31,12 +37,28 @@ export class MainComponent {
     includeSymbols: false,
   });
 
-  // full reset on clicking the app title
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
+
+  // Listens for the "Enter" key press on the entire document
+  // If the generate button is active, it focuses and clicks it
+  ngAfterViewInit() {
+    this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        const button = this.el.nativeElement.querySelector('.generate-button');
+        if (button && !button.disabled) {
+          button.focus();
+          button.click();
+        }
+      }
+    });
+  }
+
+  // Fully reloads the app when clicking the title
   resetApp() {
     window.location.reload();
   }
 
-  // password length input - changing password length according to entered value with appropriate validation
+  // Handles password length input: updates the password length with validation
   onEnterPasswordLength(event: Event): void {
     const target = event.target as HTMLInputElement;
     const inputValue = target.value;
@@ -50,13 +72,15 @@ export class MainComponent {
     }
   }
 
-  // password length input - taking reset actions on input focus
+  // Resets password and password length input field on focus
   onClearPasswordLength() {
     this.inputValue.set('');
     this.password.set('');
   }
 
-  // password length input - changing password length using buttons
+  // Modifies password length based on button action:
+  // - Increments or decrements within limits
+  // - Sets predefined values (5, 10, 15, 20, 25)
   onChangePasswordLength(event: Event): void {
     const button = event.currentTarget as HTMLButtonElement;
     const action = button.dataset['count'];
@@ -76,7 +100,7 @@ export class MainComponent {
     this.inputValue.set(this.passwordLength().toString());
   }
 
-  // changing state of three checkboxes - each separately
+  // Updates the state of a specific checkbox (letters, numbers, or symbols)
   onChangeCheckboxState(inputType: string): void {
     const key = `include${inputType}` as keyof CheckboxState;
     this.checkboxState.set({
@@ -85,7 +109,7 @@ export class MainComponent {
     });
   }
 
-  // additional string mixing using Knuth Shuffle (Fisher-Yates Shuffle) Algorithm
+  // Randomly shuffles characters in a string using the Fisher-Yates algorithm
   shuffleString(validChars: string): string {
     const arr = validChars.split('');
     for (let i = arr.length - 1; i > 0; i--) {
@@ -95,7 +119,7 @@ export class MainComponent {
     return arr.join('');
   }
 
-  // generating a random password according to selected checkboxes after click
+  // Generates a random password based on selected character types and length
   onGeneratePassword() {
     let validChars = '';
 
@@ -120,7 +144,7 @@ export class MainComponent {
     this.password.set(generatedPassword);
   }
 
-  // copying password to clipboard after click
+  // Copies the generated password to the clipboard and shows a confirmation message
   onCopyToClipboard() {
     navigator.clipboard
       .writeText(this.password())
