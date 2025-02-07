@@ -9,6 +9,8 @@ const passwordChars = {
   symbols: '!@#$%^&*()[]',
 };
 
+const numbersArray = ['5', '10', '15', '20', '25'];
+
 @Component({
   selector: 'app-main',
   imports: [NgClass, MatIconModule],
@@ -18,6 +20,7 @@ const passwordChars = {
 export class MainComponent {
   inputValue = signal('');
   passwordLength = signal(0);
+  buttonsWithNumbers = numbersArray;
   password = signal('');
   passwordIsCopied = signal(false);
   passwordIsCopiedText = signal('copy');
@@ -61,7 +64,11 @@ export class MainComponent {
       this.passwordLength.update((value) => value + 1);
     } else if (action === 'subtract' && this.passwordLength() > 0) {
       this.passwordLength.update((value) => value - 1);
+    } else if (['5', '10', '15', '20', '25'].includes(action!)) {
+      this.passwordLength.set(Number(action));
     }
+    console.log(action);
+
     this.inputValue.set(this.passwordLength().toString());
   }
 

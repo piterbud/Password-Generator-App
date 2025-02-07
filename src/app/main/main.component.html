@@ -9,11 +9,19 @@
           <input class="input-password-length__input" type="text" [value]="inputValue()"
             (input)="onEnterPasswordLength($event)" (focus)="onClearPasswordLength()" />
           <div class="input-password-length__input-buttons">
-            <button data-count="add" (click)="onChangePasswordLength($event)">+</button>
-            <button data-count="subtract" (click)="onChangePasswordLength($event)">
+            <button class="input-button" data-count="add" (click)="onChangePasswordLength($event)">+</button>
+            <button class="input-button" data-count="subtract" (click)="onChangePasswordLength($event)">
               <mat-icon>remove</mat-icon>
             </button>
           </div>
+        </div>
+        <div class="input-password-length__number-buttons">
+          <ul>
+            @for (button of buttonsWithNumbers; track $index) {
+            <li class="number-button" [attr.data-count]="button" (click)="onChangePasswordLength($event)">{{button}}
+            </li>
+            }
+          </ul>
         </div>
       </div>
     </div>
