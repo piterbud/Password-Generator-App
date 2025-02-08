@@ -4,6 +4,7 @@ import {
   ElementRef,
   AfterViewInit,
   Renderer2,
+  OnInit,
 } from '@angular/core';
 import { CheckboxState } from './input-state.model';
 import { NgClass } from '@angular/common';
@@ -23,7 +24,7 @@ const numbersArray = ['5', '10', '15', '20', '25'];
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent implements AfterViewInit {
+export class MainComponent implements AfterViewInit, OnInit {
   inputValue = signal('');
   passwordLength = signal(0);
   buttonsWithNumbers = numbersArray;
@@ -39,9 +40,25 @@ export class MainComponent implements AfterViewInit {
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
+  // Loads the checkbox state from sessionStorage on component initialization
+  ngOnInit(): void {
+    const checkboxState = sessionStorage.getItem('checkboxState');
+    if (checkboxState) {
+      this.checkboxState.set(JSON.parse(checkboxState));
+    }
+  }
+
+  // Saves the current checkbox state to sessionStorage
+  private saveCheckboxState() {
+    sessionStorage.setItem(
+      'checkboxState',
+      JSON.stringify(this.checkboxState())
+    );
+  }
+
   // Listens for the "Enter" key press on the entire document
   // If the generate button is active, it focuses and clicks it
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         const button = this.el.nativeElement.querySelector('.generate-button');
@@ -100,13 +117,14 @@ export class MainComponent implements AfterViewInit {
     this.inputValue.set(this.passwordLength().toString());
   }
 
-  // Updates the state of a specific checkbox (letters, numbers, or symbols)
+  // Updates the state of a specific checkbox (letters, numbers, or symbols) and saves the updated state to sessionStorage
   onChangeCheckboxState(inputType: string): void {
     const key = `include${inputType}` as keyof CheckboxState;
     this.checkboxState.set({
       ...this.checkboxState(),
       [key]: !this.checkboxState()[key],
     });
+    this.saveCheckboxState();
   }
 
   // Randomly shuffles characters in a string using the Fisher-Yates algorithm

@@ -28,21 +28,24 @@
 
     <div class="checkbox main-box__checkbox">
       <label>
-        <input class="checkbox__input" (change)="onChangeCheckboxState('Letters')" type="checkbox" />
+        <input class="checkbox__input" (change)="onChangeCheckboxState('Letters')" type="checkbox"
+          [checked]="checkboxState().includeLetters" />
         <span class="checkbox__name">Use Letters</span>
       </label>
     </div>
 
     <div class="checkbox main-box__checkbox">
       <label>
-        <input class="checkbox__input" (change)="onChangeCheckboxState('Numbers')" type="checkbox" />
+        <input class="checkbox__input" (change)="onChangeCheckboxState('Numbers')" type="checkbox"
+          [checked]="checkboxState().includeNumbers" />
         <span class="checkbox__name">Use Numbers</span>
       </label>
     </div>
 
     <div class="checkbox main-box__checkbox">
       <label>
-        <input class="checkbox__input" (change)="onChangeCheckboxState('Symbols')" type="checkbox" />
+        <input class="checkbox__input" (change)="onChangeCheckboxState('Symbols')" type="checkbox"
+          [checked]="checkboxState().includeSymbols" />
         <span class="checkbox__name">Use Symbols</span>
       </label>
     </div>
