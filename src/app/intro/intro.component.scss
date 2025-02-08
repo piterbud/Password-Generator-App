@@ -15,65 +15,38 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: black;
-  color: limegreen;
-  font-family: "Fira Code", monospace;
-  font-size: 4rem;
+  @include dark-overlay;
+  backdrop-filter: blur(6px);
+  animation: hide 0.8s forwards;
+  &--paused {
+    animation-play-state: paused;
+  }
+  &--running {
+    animation-play-state: running;
+  }
 }
 
 .char-box {
   display: flex;
-  gap: 0.5rem;
-}
-
-.letter {
-  display: inline-block;
-  position: relative;
-  width: 1ch;
-}
-
-.char::before {
-  content: "";
-  display: inline-block;
-  animation: shuffle 4s;
-}
-
-@keyframes shuffle {
-  0%,
-  100% {
-    content: "A";
-  }
-  10% {
-    content: "1";
-  }
-  20% {
-    content: "z";
-  }
-  30% {
-    content: "#";
-  }
-  40% {
-    content: "Q";
-  }
-  50% {
-    content: "5";
-  }
-  60% {
-    content: "@";
-  }
-  70% {
-    content: "w";
-  }
-  80% {
-    content: "8";
-  }
-  90% {
-    content: "$";
-  }
-}
-
-@for $i from 1 through 10 {
-  .char:nth-child(#{$i})::before {
-    animation-delay: #{math.random() * 2}s;
+  justify-content: center;
+  gap: 2rem;
+  color: $intro-font-color;
+  font-family: "Fira Code", monospace;
+  font-size: 3rem;
+  &__char {
+    display: inline-block;
+    position: relative;
+    width: 1ch;
+    &::before {
+      content: "";
+      display: inline-block;
+      font-size: 3rem;
+      animation: shuffleChars 3s forwards;
+    }
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i})::before {
+        animation-delay: #{math.random() * 1}s;
+      }
+    }
   }
 }

@@ -1,9 +1,62 @@
-// @keyframes hide {
-//   0% {
-//     opacity: 1;
-//   }
+// Animation used in the intro component to shuffle characters.
+// The animation changes the content of an element at various percentages
+// (from 0% to 100%) to create a "shuffling" effect for characters.
+@keyframes shuffleChars {
+  0% {
+    content: "A";
+  }
+  10% {
+    content: "1";
+  }
+  20% {
+    content: "z";
+  }
+  30% {
+    content: "#";
+  }
+  40% {
+    content: "Q";
+  }
+  50% {
+    content: "5";
+  }
+  60% {
+    content: "@";
+  }
+  70% {
+    content: "w";
+  }
+  80% {
+    content: "8";
+  }
+  90% {
+    content: "$";
+  }
+  100% {
+    content: "";
+  }
+}
 
-//   100% {
-//     opacity: 0;
-//   }
-// }
+// Animation used in the intro component to gradually fade out an element.
+// The animation decreases the opacity from 1 (fully visible) to 0 (completely transparent)
+// over the course of the animation.
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// Animation used in the app component to gradually fade in an element.
+// The animation increases the opacity from 0 (invisible) to 1 (fully visible)
+// over the course of the animation.
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

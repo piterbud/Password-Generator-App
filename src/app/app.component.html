@@ -1,7 +1,9 @@
 @if (isIntro()) {
-<app-intro />
+<app-intro (closed)="onCloseIntro()" />
 }
 
+@defer (on immediate) {
 <div class="background">
-  <app-main />
+  <app-main class="isMain" [ngClass]="!isIntro() ? 'isMain--running' : 'isMain--paused'" />
 </div>
+}

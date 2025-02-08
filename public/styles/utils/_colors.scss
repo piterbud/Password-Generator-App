@@ -1,3 +1,8 @@
+/* Intro Component */
+$intro-font-color: #00d1b2;
+
+/* Main Component */
+// General colors related to the main-box
 $main-bg-color: rgba(0, 219, 178, 0.9);
 $main-bg-color-mobile: rgba(0, 219, 178, 0.75);
 $main-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
@@ -5,21 +10,33 @@ $main-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
 $main-font-color: #001f1a;
 $title-font-color: #2e333d;
 $title-font-color-hover: #373d4a;
+
+// Colors related to the input-password-length, input-buttons, checkboxes and password-box
 $main-input-color: rgb(0, 107, 91);
 $main-input-bg-color: #dafef7;
+$main-input-bg-color-focus: rgb(0, 107, 91);
+$checkbox-symbol-color: #ebfbf8;
 $main-input-buttons-bg-color: #00d1b2;
 $main-input-buttons-bg-color-hover: #01c3a6;
-$checkbox-symbol-color: #ebfbf8;
+$main-input-buttons-bg-color-active: rgb(0, 107, 91);
+
+// Colors related to the number-buttons
 $n-button-bg-color: #4258ff;
 $n-button-bg-color-hover: #2941fc;
 $n-button-bg-color-active: #102afa;
 $n-button-font-color: #8bf6e2;
+
+// Colors related to the generate-button
 $g-button-bg-color: #4258ff;
 $g-button-bg-color-hover: #2941fc;
 $g-button-bg-color-active: #102afa;
 $g-button-font-color: #ffffff;
+
+// Colors related to the copy-button and input-password
 $c-button-color: #4258ff;
 $c-button-color-hover: #2941fc;
 $c-button-color-action: #00d1b2;
+
+// Colors related to the input-password
 $password-input-border-color: #4258ff;
 $password-input-bg-color: #ffffff;

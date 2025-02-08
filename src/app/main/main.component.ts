@@ -56,8 +56,9 @@ export class MainComponent implements AfterViewInit, OnInit {
     );
   }
 
-  // Listens for the "Enter" key press on the entire document
-  // If the generate button is active, it focuses and clicks it
+  // Listens for the "Enter" and "Escape" key presses on the entire document
+  // If the "Enter" key is pressed, it focuses and clicks the active generate button
+  // If the "Escape" key is pressed, it reloads the page
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
@@ -66,6 +67,10 @@ export class MainComponent implements AfterViewInit, OnInit {
           button.focus();
           button.click();
         }
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        this.resetApp();
       }
     });
   }

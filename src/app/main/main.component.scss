@@ -66,7 +66,7 @@
     font-weight: 500;
     text-align: center;
     &:focus {
-      background-color: $main-input-color;
+      background-color: $main-input-bg-color-focus;
       color: $main-input-bg-color;
     }
   }
@@ -106,7 +106,7 @@
     background-color: $main-input-buttons-bg-color-hover;
   }
   &:active {
-    background-color: $main-input-color;
+    background-color: $main-input-buttons-bg-color-active;
     color: $main-input-bg-color;
   }
   &:first-child {
