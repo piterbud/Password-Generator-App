@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { IntroComponent } from './intro/intro.component';
-import { OnInit } from '@angular/core';
 import { MainComponent } from './main/main.component';
 import { NgClass } from '@angular/common';
 

@@ -1,22 +1,20 @@
 # Password Generator App
 ### Generator Haseł
 
-## General info
-This is very usefull application to generate passwords. 
-* You can easily choose any password length and structure (letters, numbers, symbols). 
-* Once you've generated your password, you can copy it to your clipboard with one click.
-* The app is in English.
+## General Info
+This is a useful application for generating passwords.
+* Easily choose the password length and structure (letters, numbers, symbols).
+* Copy the generated password to your clipboard with a single click.
+* The maximum password length is 100 characters.
 
-### Other features:
-* The application is **responsive** and can be used on desktop computers, tablets and smartphones.
+### Additional Features
+* **Responsive design** - works on desktops, tablets, and smartphones.
  
-## Running the page
+## Running the Application
 To run this project:
-* run `ng serve` for a dev server and navigate to `http://localhost:4200/` or
-* click this [link](https://piotr-woz.github.io/Password-Generator-App/)
+* Run `ng serve`, then navigate to `http://localhost:4200/`
+* Or use the online version by clicking this [link](https://piotr-woz.github.io/Password-Generator-App/)
 
 ## Technologies
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0. and with:
-* TypeScript
-* HTML
-* SCSS
+* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0. and uses SCSS.
+* The application is built using modern Angular syntax (signals, new control flow, etc.).
