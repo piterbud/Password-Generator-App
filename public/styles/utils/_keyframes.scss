@@ -37,11 +37,29 @@
   }
 }
 
+// This animation keeps the text transparent until the very end,
+// ensuring it becomes visible only after the last ::after character
+// from the 'shuffleChars' animation disappears.
+@keyframes revealText {
+  0% {
+    color: transparent;
+  }
+  99.999% {
+    color: transparent;
+  }
+  100% {
+    color: #00d1b2;
+  }
+}
+
 // Animation used in the intro component to gradually fade out an element.
 // The animation decreases the opacity from 1 (fully visible) to 0 (completely transparent)
 // over the course of the animation.
 @keyframes hide {
   0% {
+    opacity: 1;
+  }
+  60% {
     opacity: 1;
   }
   100% {
