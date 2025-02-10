@@ -26,11 +26,24 @@
   }
 }
 
+.char-boxes {
+  margin-top: 30vh;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@include view-max-portrait($s-mobile) {
+  .char-boxes {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
 .char-box {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 30vh;
   padding: 1rem;
   &__char {
     display: inline-block;
@@ -51,7 +64,7 @@
       animation: shuffleChars 3s forwards;
     }
 
-    @for $i from 1 through 18 {
+    @for $i from 1 through 9 {
       // Generates a random delay for a given character
       $delay: math.random() * 1s;
 
@@ -66,17 +79,5 @@
         animation-delay: #{$delay};
       }
     }
-  }
-}
-
-@include view-max-portrait($s-mobile) {
-  .char-box__char {
-    font-size: 1.8rem;
-  }
-}
-
-@include view-max-portrait($xs-mobile) {
-  .char-box__char {
-    font-size: 1.2rem;
   }
 }
