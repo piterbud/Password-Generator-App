@@ -86,6 +86,8 @@ export class MainComponent implements AfterViewInit, OnInit {
     const inputValue = target.value;
     this.inputValue.set(inputValue);
 
+    // This regex checks if inputValue consists of a positive integer
+    // (a non-zero digit followed by any number of digits).
     if (/^[1-9]\d*$/.test(inputValue)) {
       const inputValueInt = parseInt(inputValue, 10);
       this.passwordLength.set(inputValueInt);
@@ -97,12 +99,15 @@ export class MainComponent implements AfterViewInit, OnInit {
   // Resets password and password length input field on focus
   onClearPasswordLength() {
     this.inputValue.set('');
+    this.passwordLength.set(0);
     this.password.set('');
   }
 
   // Modifies password length based on button action:
   // - Increments or decrements within limits
   // - Sets predefined values (5, 10, 15, 20, 25)
+  // We use 'currentTarget' instead of 'target' because one of the buttons contains a mat-icon
+  // ('target' would point to the icon element).
   onChangePasswordLength(event: Event): void {
     const button = event.currentTarget as HTMLButtonElement;
     const action = button.dataset['count'];
@@ -115,14 +120,15 @@ export class MainComponent implements AfterViewInit, OnInit {
       this.passwordLength.update((value) => value + 1);
     } else if (action === 'subtract' && this.passwordLength() > 0) {
       this.passwordLength.update((value) => value - 1);
-    } else if (['5', '10', '15', '20', '25'].includes(action!)) {
+    } else if (this.buttonsWithNumbers.includes(action!)) {
       this.passwordLength.set(Number(action));
     }
 
     this.inputValue.set(this.passwordLength().toString());
   }
 
-  // Updates the state of a specific checkbox (letters, numbers, or symbols) and saves the updated state to sessionStorage
+  // Updates the state of a specific checkbox (letters, numbers, or symbols)
+  // and saves the updated state to sessionStorage.
   onChangeCheckboxState(inputType: string): void {
     const key = `include${inputType}` as keyof CheckboxState;
     this.checkboxState.set({
@@ -157,12 +163,12 @@ export class MainComponent implements AfterViewInit, OnInit {
       ? (validChars += passwordChars.symbols + passwordChars.symbols)
       : null;
 
-    const shuffleChars = this.shuffleString(validChars);
+    const shuffledChars = this.shuffleString(validChars);
 
     let generatedPassword = '';
     for (let i = 0; i < this.passwordLength(); i++) {
-      const index = Math.floor(Math.random() * shuffleChars.length);
-      generatedPassword += shuffleChars[index];
+      const index = Math.floor(Math.random() * shuffledChars.length);
+      generatedPassword += shuffledChars[index];
     }
     this.password.set(generatedPassword);
   }
