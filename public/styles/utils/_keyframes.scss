@@ -1,7 +1,7 @@
-// Animation used in the intro component to shuffle characters.
-// The animation changes the content of an element at various percentages
+// Animations used in the intro component to shuffle characters.
+// The animations change the content of an element at various percentages
 // (from 0% to 100%) to create a "shuffling" effect for characters.
-@keyframes shuffleChars {
+@keyframes shuffleCharsOdd {
   0% {
     content: "A";
   }
@@ -37,6 +37,42 @@
   }
 }
 
+@keyframes shuffleCharsEven {
+  0% {
+    content: "9";
+  }
+  10% {
+    content: "C";
+  }
+  20% {
+    content: "&";
+  }
+  30% {
+    content: "d";
+  }
+  40% {
+    content: "2";
+  }
+  50% {
+    content: "R";
+  }
+  60% {
+    content: "e";
+  }
+  70% {
+    content: "%";
+  }
+  80% {
+    content: "7";
+  }
+  90% {
+    content: "N";
+  }
+  100% {
+    content: "";
+  }
+}
+
 // This animation keeps the text transparent until the very end,
 // ensuring it becomes visible only after the last ::after character
 // from the 'shuffleChars' animation disappears.
@@ -59,7 +95,7 @@
   0% {
     opacity: 1;
   }
-  60% {
+  70% {
     opacity: 1;
   }
   100% {

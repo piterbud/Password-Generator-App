@@ -18,6 +18,7 @@ export class IntroComponent {
   }
 
   // Emits an event when the 'hide' animation ends - action associated with the code in the app component
+  // The event condition prevents the method from running after the first animations (shuffleCharsOdd and shuffleCharsEven) have finished
   onCloseIntro(event: AnimationEvent) {
     if (event.animationName.includes('hide')) {
       this.closed.emit();

@@ -1,7 +1,7 @@
 <div class="intro">
   <div class="container" [ngClass]="isIntroHidden() ? 'container--running' : 'container--paused'"
     (animationend)="onCloseIntro($event)">
-    @defer (on timer(800ms)) {
+    @defer (on timer(900ms)) {
     <div class="char-boxes">
       <div class="char-box">
         <span class="char-box__char">P</span>

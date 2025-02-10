@@ -17,7 +17,7 @@
   height: 100vh;
   @include dark-overlay;
   backdrop-filter: blur(6px);
-  animation: hide 2s forwards;
+  animation: hide 2.2s forwards;
   &--paused {
     animation-play-state: paused;
   }
@@ -45,6 +45,7 @@
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
+
   &__char {
     display: inline-block;
     position: relative;
@@ -61,7 +62,12 @@
       width: 100%;
       height: 100%;
       color: $intro-font-color;
-      animation: shuffleChars 3s forwards;
+    }
+    &:nth-child(odd)::after {
+      animation: shuffleCharsOdd 3s forwards;
+    }
+    &:nth-child(even)::after {
+      animation: shuffleCharsEven 3s forwards;
     }
 
     @for $i from 1 through 9 {
