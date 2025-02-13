@@ -9,12 +9,20 @@ This is a useful application for generating passwords.
 
 ### Additional Features
 * **Responsive design** - works on desktops, tablets, and smartphones.
- 
-## Running the Application
-To run this project:
-* Run `ng serve`, then navigate to `http://localhost:4200/`
-* Or use the online version by clicking this [link](https://piotr-woz.github.io/Password-Generator-App/)
 
-## Technologies
-* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0. and uses SCSS.
-* The application is built using modern Angular syntax (signals, new control flow, etc.).
+## Installation and Running the Application
+To run this project locally:
+* Clone the repository to your computer: `https://github.com/piotr-woz/Password-Generator-App.git`
+* Navigate to the project directory and install dependencies: `npm install`
+* Start the development server by running `ng serve`, then navigate to `http://localhost:4200/` in your browser to view the application.
+
+Alternatively, you can access the deployed application by clicking this [link](https://password-generator-app-ng.vercel.app).
+
+## Technologies Used
+This project was generated with **Angular - version 19.1.0.** ([Angular CLI link](https://github.com/angular/angular-cli)) and built using:
+
+* Typescript 5.7.2
+* HTML5
+* SASS 1.83.1
+
+The application is built using modern Angular features such as signals, the new control flow syntax, and more.
